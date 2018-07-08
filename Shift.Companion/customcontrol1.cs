@@ -103,5 +103,15 @@ namespace Shift.Companion
             PingReply reply = ping.Send(listView1.FocusedItem.SubItems[1].Text.ToString(), 1000);
             MessageBox.Show(reply.Status.ToString());
         }
+
+        private void button3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button4_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
