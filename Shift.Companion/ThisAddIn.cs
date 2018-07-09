@@ -89,7 +89,7 @@ namespace Shift.Companion
                             else if (mail.SenderEmailAddress == "sitescope@support.linkdatacenter.net")
                             {
 
-                                var url = Regex.Match(mail.Body, @"(?<=URL: )(.+?)(?=\n)");
+                                var url = Regex.Match(mail.Body, @"(?<=URL: )(.+?)(?=\n|,)");
                                 if (mail.Subject.Contains("Sitescope Alert, error"))
                                 {
 
@@ -185,17 +185,19 @@ namespace Shift.Companion
                                         ListViewItem li = new ListViewItem(servreName.Value,2 );
                                         if (mail.Subject.Contains("Job Failed"))
                                         {
-                                            li.SubItems[2].Text = "failed Job";
-                                            li.SubItems[3].Text = "Backup";
-                                            li.SubItems[4].Text = jobName.Value;
+                                            li.SubItems.Add("");
+                                            li.SubItems.Add("failed Job");
+                                            li.SubItems.Add("Backup");
+                                            li.SubItems.Add(jobName.Value);
                                             li.Group = mainform.customcontrol11.listView1.Groups[7];
                                             mainform.customcontrol11.listView1.Items.Add(li);
                                         }
                                         else if (mail.Subject.Contains("Job Cancellation"))
                                         {
-                                            li.SubItems[2].Text = "cancelled Job";
-                                            li.SubItems[3].Text = "Backup";
-                                            li.SubItems[4].Text = jobName.Value;
+                                            li.SubItems.Add("");
+                                            li.SubItems.Add("cancelled Job");
+                                            li.SubItems.Add("Backup");
+                                            li.SubItems.Add(jobName.Value);
                                             li.Group = mainform.customcontrol11.listView1.Groups[7];
                                             mainform.customcontrol11.listView1.Items.Add(li);
                                         }
