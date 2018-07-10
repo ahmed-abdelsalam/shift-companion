@@ -105,6 +105,11 @@ namespace Shift.Companion
         { 
            this.WindowState = FormWindowState.Minimized;
         }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
     }
     
 }

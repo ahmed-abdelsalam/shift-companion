@@ -39,6 +39,9 @@ namespace Shift.Companion
                 IMsTscNonScriptable secure = (IMsTscNonScriptable)rdp.GetOcx();
                 secure.ClearTextPassword = textBox3.Text.ToString();
                 rdp.Connect();
+                rdp.AdvancedSettings3.SmartSizing = true;
+                
+
             }
 
             catch (Exception ex)
@@ -80,6 +83,40 @@ namespace Shift.Companion
 
         private void rdp_OnConnecting(object sender, EventArgs e)
         {
+
+        }
+
+        private void label1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox3_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox1_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBox2_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void label3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void button3_Click_1(object sender, EventArgs e)
+        {
+            rdp.DesktopWidth = Screen.PrimaryScreen.Bounds.Width;
+            rdp.DesktopWidth = Screen.PrimaryScreen.Bounds.Height;
+            rdp.FullScreen = true;
+            
 
         }
     }

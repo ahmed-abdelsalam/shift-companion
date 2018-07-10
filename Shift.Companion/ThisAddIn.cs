@@ -79,7 +79,8 @@ namespace Shift.Companion
                                 {
                                     if (mainform.customcontrol11.listView1.FindItemWithText(mIP.Value) != null)
                                     {
-                                        mainform.customcontrol11.listView1.FindItemWithText(mIP.Value).Group= mainform.customcontrol11.listView1.Groups[6];
+                                        if(mainform.customcontrol11.listView1.FindItemWithText(mIP.Value).SubItems[3].Text== "Down")    
+                                            mainform.customcontrol11.listView1.FindItemWithText(mIP.Value).Group= mainform.customcontrol11.listView1.Groups[6];
                                     }
                                 }
                             }
@@ -122,6 +123,7 @@ namespace Shift.Companion
                             {
 
                                 var space = Regex.Match(mail.Subject, @"(?<=Alert: Percent Space Used of )(.+?)(?=-)");
+                                var spaceReset = Regex.Match(mail.Subject, @"(?<=Reset: Percent Space Used of )(.+?)(?=-)");
                                 var percent = Regex.Match(mail.Subject, @"(?<=is now )(.+?)(?=%)");
                                 if (mail.Subject.Contains("Alert: Percent Space"))
                                 {
@@ -144,10 +146,10 @@ namespace Shift.Companion
                                 else if (mail.Subject.Contains("Reset: Percent Space"))
                                 {
 
-                                    if (mainform.customcontrol11.listView1.FindItemWithText(space.Value) != null)
+                                    if (mainform.customcontrol11.listView1.FindItemWithText(spaceReset.Value) != null)
                                     {
-                                        mainform.customcontrol11.listView1.FindItemWithText(space.Value).Group= mainform.customcontrol11.listView1.Groups[6];
-                                        mainform.customcontrol11.listView1.FindItemWithText(space.Value).SubItems[2].Text= percent.Value + "%";
+                                        mainform.customcontrol11.listView1.FindItemWithText(spaceReset.Value).Group= mainform.customcontrol11.listView1.Groups[6];
+                                        mainform.customcontrol11.listView1.FindItemWithText(spaceReset.Value).SubItems[2].Text= percent.Value + "%";
                                     }               
 
                                 }
