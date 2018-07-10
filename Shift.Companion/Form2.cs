@@ -32,15 +32,18 @@ namespace Shift.Companion
         private void button1_Click(object sender, EventArgs e)
         {
             try
-            {   rdp.AdvancedSettings9.EnableCredSspSupport = true;
+            {
+                rdp.DesktopWidth = Screen.PrimaryScreen.Bounds.Width;
+                rdp.DesktopHeight = Screen.PrimaryScreen.Bounds.Height;
+                rdp.AdvancedSettings9.EnableCredSspSupport = true;
                 rdp.Domain = "linkdc";
                 rdp.Server = textBox1.Text.ToString();
                 rdp.UserName = textBox2.Text.ToString();
                 IMsTscNonScriptable secure = (IMsTscNonScriptable)rdp.GetOcx();
                 secure.ClearTextPassword = textBox3.Text.ToString();
                 rdp.Connect();
-                rdp.AdvancedSettings3.SmartSizing = true;
-                
+                //rdp.SyncSessionDisplaySettings();
+                rdp.AdvancedSettings9.SmartSizing = true;
 
             }
 
@@ -113,10 +116,16 @@ namespace Shift.Companion
 
         private void button3_Click_1(object sender, EventArgs e)
         {
-            rdp.DesktopWidth = Screen.PrimaryScreen.Bounds.Width;
-            rdp.DesktopWidth = Screen.PrimaryScreen.Bounds.Height;
+            //IMsRdpClient10 client = (IMsRdpClient10)rdp.GetOcx();
+            //Size ScreenSize = new Size(Screen.PrimaryScreen.Bounds.Width, Screen.PrimaryScreen.Bounds.Height);
+            //rdp.ClientSize = ScreenSize;
             rdp.FullScreen = true;
             
+
+        }
+
+        private void rdp_OnConnecting_1(object sender, EventArgs e)
+        {
 
         }
     }
