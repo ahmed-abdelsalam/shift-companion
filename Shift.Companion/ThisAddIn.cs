@@ -18,6 +18,17 @@ namespace Shift.Companion
         Outlook.MAPIFolder inbox;
         Outlook.Items items;
 
+        public int SearchGroup(int group , string search)
+        {
+            int index = -1;
+            foreach (ListViewItem item in  mainform.customcontrol11.listView1.Groups[group].Items)
+            {
+                if (item.Text == search)
+                    index = item.Index;
+            }
+            return index;
+        }
+
         private void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
 
@@ -34,13 +45,14 @@ namespace Shift.Companion
 
         void InboxFolderItemAdded(object Item)
             {
-
+                
                 if (Item is Outlook.MailItem)
                     {
 
                         Outlook.MailItem mail = (Outlook.MailItem)Item;
                         if (Item != null)
                         {
+                            int index;
                             mainform.textBox1.Text = mail.Subject;
                             Regex time = new Regex(@"\b\d{1,2}\:\d{1,2}\ [AaPpMm]{2}");
                             Regex IP = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
@@ -53,17 +65,13 @@ namespace Shift.Companion
                                 Regex word = new Regex(@"\w+");
                                 Match mIP = IP.Match(mail.Body);
                                 Match service = Regex.Match(mail.Subject, @"(?<before>[A-Za-z0-9,]+|[A-Za-z0-9,]+\s[0-9]+) Down (?<after>\w+)", RegexOptions.IgnoreCase);
+                                index = SearchGroup(0, word.Matches(mail.Subject)[1].Value);
                                 if (mail.Subject.ToUpper().Contains("Down".ToUpper()))
                                 {
                                 //Match result2 = time.Match(mail.Subject);
-                                    if(mainform.customcontrol11.listView1.FindItemWithText(mIP.Value) != null)
+                                    if(index != -1)
                                     {
-                                        mainform.customcontrol11.listView1.FindItemWithText(mIP.Value).SubItems[2].Text = service.Groups["before"].ToString();
-                                        mainform.customcontrol11.listView1.FindItemWithText(mIP.Value).Group= mainform.customcontrol11.listView1.Groups[0];
-
-
-
-
+                                        mainform.customcontrol11.listView1.Items[index].SubItems[2].Text = service.Groups["before"].ToString();
                                     }
                                     else {
                                         ListViewItem li = new ListViewItem(word.Matches(mail.Subject)[1].Value, 1);
@@ -77,10 +85,10 @@ namespace Shift.Companion
                                 }
                                 else if (mail.Subject.ToUpper().Contains("UP".ToUpper()))
                                 {
-                                    if (mainform.customcontrol11.listView1.FindItemWithText(mIP.Value) != null)
+                                    if (index != -1)
                                     {
-                                        if(mainform.customcontrol11.listView1.FindItemWithText(mIP.Value).SubItems[3].Text== "Down")    
-                                            mainform.customcontrol11.listView1.FindItemWithText(mIP.Value).Group= mainform.customcontrol11.listView1.Groups[6];
+                                        if(mainform.customcontrol11.listView1.Items[index].SubItems[3].Text== "Down")    
+                                            mainform.customcontrol11.listView1.Items[index].Group= mainform.customcontrol11.listView1.Groups[6];
                                     }
                                 }
                             }
@@ -89,13 +97,13 @@ namespace Shift.Companion
 
                             else if (mail.SenderEmailAddress == "sitescope@support.linkdatacenter.net")
                             {
-
+                                
                                 var url = Regex.Match(mail.Body, @"(?<=URL: )(.+?)(?=\n|,)");
                                 if (mail.Subject.Contains("Sitescope Alert, error"))
                                 {
 
                                 
-                                    if (mainform.customcontrol11.listView1.FindItemWithText(url.Value)==null)
+                                    if ( mainform.customcontrol11.listView1.FindItemWithText(url.Value)==null)
                                     {
                                         ListViewItem li = new ListViewItem("Url Down", 3);
                                         li.SubItems.Add(url.Value);
@@ -125,9 +133,10 @@ namespace Shift.Companion
                                 var space = Regex.Match(mail.Subject, @"(?<=Alert: Percent Space Used of )(.+?)(?=-)");
                                 var spaceReset = Regex.Match(mail.Subject, @"(?<=Reset: Percent Space Used of )(.+?)(?=-)");
                                 var percent = Regex.Match(mail.Subject, @"(?<=is now )(.+?)(?=%)");
+                                index = SearchGroup(1, space.Value);
                                 if (mail.Subject.Contains("Alert: Percent Space"))
                                 {
-                                    if (mainform.customcontrol11.listView1.FindItemWithText(space.Value) == null) {
+                                    if (index == -1) {
                                         ListViewItem li = new ListViewItem(space.Value, 0);
                                         li.SubItems.Add(IP.Match(mail.Body).Value);
                                         li.SubItems.Add(percent.Value+"%");
@@ -137,7 +146,7 @@ namespace Shift.Companion
                                     }
                                     else
                                     {
-                                    mainform.customcontrol11.listView1.FindItemWithText(space.Value).SubItems[2].Text= percent.Value + "%";
+                                    mainform.customcontrol11.listView1.Items[index].SubItems[2].Text= percent.Value + "%";
                                     }
 
                                 }
@@ -146,10 +155,10 @@ namespace Shift.Companion
                                 else if (mail.Subject.Contains("Reset: Percent Space"))
                                 {
 
-                                    if (mainform.customcontrol11.listView1.FindItemWithText(spaceReset.Value) != null)
+                                    if (index != -1)
                                     {
-                                        mainform.customcontrol11.listView1.FindItemWithText(spaceReset.Value).Group= mainform.customcontrol11.listView1.Groups[6];
-                                        mainform.customcontrol11.listView1.FindItemWithText(spaceReset.Value).SubItems[2].Text= percent.Value + "%";
+                                        mainform.customcontrol11.listView1.Items[index].Group= mainform.customcontrol11.listView1.Groups[6];
+                                        mainform.customcontrol11.listView1.Items[index].SubItems[2].Text= percent.Value + "%";
                                     }               
 
                                 }
