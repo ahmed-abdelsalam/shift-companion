@@ -108,7 +108,8 @@ namespace Shift.Companion
                                     {
                                         ListViewItem li = new ListViewItem("Url Down", 3);
                                         li.SubItems.Add(url.Value);
-                                        li.SubItems[3].Text=mail.ReceivedTime.ToShortTimeString();
+                                        li.SubItems.Add("");
+                                        li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
                                         li.Group = mainform.customcontrol11.listView1.Groups[3];
                                         mainform.customcontrol11.listView1.Items.Add(li);
                                     }
@@ -170,12 +171,7 @@ namespace Shift.Companion
                                 else if (mail.Subject.Contains("Reboot"))
                                 {
                                     var servreName = Regex.Match(mail.Body, @"(?<=ALERT: )(.+?)(?= -)");
-                                    ListViewItem li = new ListViewItem(servreName.Value, 4);
-                                    li.SubItems.Add(IP.Match(mail.Body).Value);
-                                    li.SubItems.Add(time.Match(mail.Body).Value);
-                                    li.SubItems.Add("Reboot");
-                                    li.Group = mainform.customcontrol11.listView1.Groups[2];
-                                    mainform.customcontrol11.listView1.Items.Add(li);
+                                    
 
 
 
@@ -223,6 +219,33 @@ namespace Shift.Companion
                             }
 
 
+                            else if (mail.SenderEmailAddress == "be@support.linkdatacenter.net")
+                            {
+                                var downName = Regex.Match(mail.Subject, @"(?<=Alarm: )(.+?)(?=is  Down|is  Critical))");
+                                var upName = Regex.Match(mail.Subject, @"(?<=Alarm: )(.+?)(?=is  Up|is  Clear))");
+                                index = SearchGroup(4, downName.Value);
+                                if (mail.Subject.Contains("Down")|| mail.Subject.Contains("Critical"))
+                                {if(index==-1)
+                                    index = SearchGroup(4, downName.Value);
+                                    ListViewItem li = new ListViewItem(downName.Value, 3);
+                                    li.SubItems.Add("");
+                                    li.SubItems.Add(time.Match(mail.Body).Value);
+                                    li.SubItems.Add("Down");
+                                    li.Group = mainform.customcontrol11.listView1.Groups[4];
+                                    mainform.customcontrol11.listView1.Items.Add(li);
+
+                                }
+                                else if( mail.Subject.Contains("Up") || mail.Subject.Contains("Clear"))
+                                {
+                                    index = SearchGroup(4, upName.Value);
+                                    if (index != -1)
+                                    {
+                                        mainform.customcontrol11.listView1.Items[index].Remove();
+                                    }
+
+                                }
+
+                            }
 
 
 
