@@ -299,12 +299,12 @@
             this.customcontrol11.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.customcontrol11.AutoSize = true;
+            this.customcontrol11.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.customcontrol11.Font = new System.Drawing.Font("Century Gothic", 10.2F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.customcontrol11.Location = new System.Drawing.Point(173, 52);
+            this.customcontrol11.Location = new System.Drawing.Point(174, 47);
             this.customcontrol11.Margin = new System.Windows.Forms.Padding(4);
             this.customcontrol11.Name = "customcontrol11";
-            this.customcontrol11.Size = new System.Drawing.Size(671, 377);
+            this.customcontrol11.Size = new System.Drawing.Size(671, 382);
             this.customcontrol11.TabIndex = 7;
             this.customcontrol11.Load += new System.EventHandler(this.customcontrol11_Load_1);
             // 
@@ -312,7 +312,6 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.AutoSize = true;
             this.AutoSizeMode = System.Windows.Forms.AutoSizeMode.GrowAndShrink;
             this.AutoValidate = System.Windows.Forms.AutoValidate.EnablePreventFocusChange;
             this.ClientSize = new System.Drawing.Size(845, 429);
@@ -331,7 +330,6 @@
             this.panel2.ResumeLayout(false);
             this.panel2.PerformLayout();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
