@@ -277,10 +277,11 @@
     <SignManifests>true</SignManifests>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestKeyFile>Shift.Companion_TemporaryKey.pfx</ManifestKeyFile>
+    <ManifestKeyFile>
+    </ManifestKeyFile>
   </PropertyGroup>
   <PropertyGroup>
-    <ManifestCertificateThumbprint>FEFA453E193DC9B1D7F22FFE4D487444FBCF5DD3</ManifestCertificateThumbprint>
+    <ManifestCertificateThumbprint>10E2FFCD82741FF4126C4A4A1447CADFE009FD1E</ManifestCertificateThumbprint>
   </PropertyGroup>
   <!-- Include the build rules for a C# project. -->
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

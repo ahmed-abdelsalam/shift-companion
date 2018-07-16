@@ -56,7 +56,7 @@ namespace Shift.Companion
                             mainform.textBox1.Text = mail.Subject;
                             Regex time = new Regex(@"\b\d{1,2}\:\d{1,2}\ [AaPpMm]{2}");
                             Regex IP = new Regex(@"\b\d{1,3}\.\d{1,3}\.\d{1,3}\.\d{1,3}\b");
-
+                            
 
 
 
@@ -78,6 +78,7 @@ namespace Shift.Companion
                                         li.SubItems.Add(mIP.Value);
                                         li.SubItems.Add(service.Groups["before"].ToString());
                                         li.SubItems.Add("Down");
+                                        li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
                                         li.Group = mainform.customcontrol11.listView1.Groups[0];
                                         mainform.customcontrol11.listView1.Items.Add(li);
                                     }
@@ -107,6 +108,7 @@ namespace Shift.Companion
                                     {
                                         ListViewItem li = new ListViewItem("Url Down", 3);
                                         li.SubItems.Add(url.Value);
+                                        li.SubItems[3].Text=mail.ReceivedTime.ToShortTimeString();
                                         li.Group = mainform.customcontrol11.listView1.Groups[3];
                                         mainform.customcontrol11.listView1.Items.Add(li);
                                     }
@@ -141,6 +143,7 @@ namespace Shift.Companion
                                         li.SubItems.Add(IP.Match(mail.Body).Value);
                                         li.SubItems.Add(percent.Value+"%");
                                         li.SubItems.Add("space");
+                                        li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
                                         li.Group = mainform.customcontrol11.listView1.Groups[1];
                                         mainform.customcontrol11.listView1.Items.Add(li);
                                     }
@@ -200,6 +203,7 @@ namespace Shift.Companion
                                             li.SubItems.Add("failed Job");
                                             li.SubItems.Add("Backup");
                                             li.SubItems.Add(jobName.Value);
+                                            li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
                                             li.Group = mainform.customcontrol11.listView1.Groups[7];
                                             mainform.customcontrol11.listView1.Items.Add(li);
                                         }
@@ -209,6 +213,7 @@ namespace Shift.Companion
                                             li.SubItems.Add("cancelled Job");
                                             li.SubItems.Add("Backup");
                                             li.SubItems.Add(jobName.Value);
+                                            li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
                                             li.Group = mainform.customcontrol11.listView1.Groups[7];
                                             mainform.customcontrol11.listView1.Items.Add(li);
                                         }
