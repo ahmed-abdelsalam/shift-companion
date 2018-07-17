@@ -38,6 +38,7 @@
             System.Windows.Forms.ListViewGroup listViewGroup6 = new System.Windows.Forms.ListViewGroup("Zabbix", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup7 = new System.Windows.Forms.ListViewGroup("Resolved", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup8 = new System.Windows.Forms.ListViewGroup("Backup", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("CPU", System.Windows.Forms.HorizontalAlignment.Left);
             this.panel1 = new System.Windows.Forms.Panel();
             this.SidePanel2 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
@@ -307,6 +308,8 @@
             listViewGroup7.Name = "listViewGroup7";
             listViewGroup8.Header = "Backup";
             listViewGroup8.Name = "listViewGroup8";
+            listViewGroup9.Header = "CPU";
+            listViewGroup9.Name = "listViewGroup9";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2,
@@ -315,7 +318,8 @@
             listViewGroup5,
             listViewGroup6,
             listViewGroup7,
-            listViewGroup8});
+            listViewGroup8,
+            listViewGroup9});
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(0, 67);
             this.listView1.Name = "listView1";

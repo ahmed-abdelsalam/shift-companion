@@ -134,7 +134,7 @@ namespace Shift.Companion
                             {
 
                                 var space = Regex.Match(mail.Subject, @"(?<=Alert: Percent Space Used of )(.+?)(?=-)");
-                                var spaceReset = Regex.Match(mail.Subject, @"(?<=Reset: Percent Space Used of )(.+?)(?=-)");
+                                var spaceReset = Regex.Match(mail.Subject, @"(?<=Reset: Percent Space Used of )(.+?)(?=-)"); 
                                 var percent = Regex.Match(mail.Subject, @"(?<=is now )(.+?)(?=%)");
                                 index = SearchGroup(1, space.Value);
                                 if (mail.Subject.Contains("Alert: Percent Space"))
@@ -158,7 +158,7 @@ namespace Shift.Companion
 
                                 else if (mail.Subject.Contains("Reset: Percent Space"))
                                 {
-
+                                    index = SearchGroup(1, spaceReset.Value);
                                     if (index != -1)
                                     {
                                         mainform.customcontrol11.listView1.Items[index].Group= mainform.customcontrol11.listView1.Groups[6];
@@ -168,13 +168,48 @@ namespace Shift.Companion
                                 }
 
 
+                                else if (mail.Subject.Contains("Alert: CPU Load"))
+                                {
+                                    var cpuname = Regex.Match(mail.Subject, @"(?<=Alert: CPU Load on )(.+?)(?=-)");
+                                    index = SearchGroup(8, cpuname.Value);
+                                    
+                                    if (index == -1)
+                                    {
+                                        ListViewItem li = new ListViewItem(cpuname.Value, 0);
+                                        li.SubItems.Add(IP.Match(mail.Subject).Value);
+                                        li.SubItems.Add(percent.Value + "%");
+                                        li.SubItems.Add("CPU");
+                                        li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
+                                        li.Group = mainform.customcontrol11.listView1.Groups[8];
+                                        mainform.customcontrol11.listView1.Items.Add(li);
+                                    }
+                                    else
+                                    {
+                                        mainform.customcontrol11.listView1.Items[index].SubItems[2].Text = percent.Value + "%";
+                                    }
+
+                                }
+
+                                else if (mail.Subject.Contains("Reset :  CPU Load on"))
+                                {
+                                    var cpuresetname = Regex.Match(mail.Subject, @"(?<=Alert: CPU Load on )(.+?)(?=-)");
+                                    index = SearchGroup(8, cpuresetname.Value);
+                                    if (index != -1)
+                                    {
+                                        mainform.customcontrol11.listView1.Items[index].Remove();
+                                    }
+
+                                }
+
                                 else if (mail.Subject.Contains("Reboot"))
                                 {
                                     var servreName = Regex.Match(mail.Body, @"(?<=ALERT: )(.+?)(?= -)");
-                                    
-
-
-
+                                    ListViewItem li = new ListViewItem(servreName.Value, 4);
+                                    li.SubItems.Add(IP.Match(mail.Body).Value);
+                                    li.SubItems.Add(time.Match(mail.Body).Value);
+                                    li.SubItems.Add("Reboot");
+                                    li.Group = mainform.customcontrol11.listView1.Groups[2];
+                                    mainform.customcontrol11.listView1.Items.Add(li);
 
                                 }
                             }
@@ -219,10 +254,10 @@ namespace Shift.Companion
                             }
 
 
-                            else if (mail.SenderEmailAddress == "be@support.linkdatacenter.net")
+                            else if (mail.SenderEmailAddress == "AppMgr@support.linkdatacenter.net")
                             {
-                                var downName = Regex.Match(mail.Subject, @"(?<=Alarm: )(.+?)(?=is  Down|is  Critical))");
-                                var upName = Regex.Match(mail.Subject, @"(?<=Alarm: )(.+?)(?=is  Up|is  Clear))");
+                                var downName = Regex.Match(mail.Subject, @"(?<=Alarm: )(.+?)(?=is  Down|is  Critical)");
+                                var upName = Regex.Match(mail.Subject, @"(?<=Alarm: )(.+?)(?=is  Up|is  Clear)");
                                 index = SearchGroup(4, downName.Value);
                                 if (mail.Subject.Contains("Down")|| mail.Subject.Contains("Critical"))
                                 {if(index==-1)
