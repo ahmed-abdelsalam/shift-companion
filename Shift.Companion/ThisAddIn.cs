@@ -192,7 +192,7 @@ namespace Shift.Companion
 
                                 else if (mail.Subject.Contains("Reset :  CPU Load on"))
                                 {
-                                    var cpuresetname = Regex.Match(mail.Subject, @"(?<=Alert: CPU Load on )(.+?)(?=-)");
+                                    var cpuresetname = Regex.Match(mail.Subject, @"(?<=Reset :  CPU Load on )(.+?)(?=-)");
                                     index = SearchGroup(8, cpuresetname.Value);
                                     if (index != -1)
                                     {
@@ -200,6 +200,49 @@ namespace Shift.Companion
                                     }
 
                                 }
+
+
+
+
+
+                                else if (mail.Subject.Contains("Alert: Memory Utilized  on"))
+                                {
+                                    var memname = Regex.Match(mail.Subject, @"(?<=Alert: Memory Utilized  on )(.+?)(?=-)");
+                                    index = SearchGroup(10, memname.Value);
+
+                                    if (index == -1)
+                                    {
+                                        ListViewItem li = new ListViewItem(memname.Value, 0);
+                                        li.SubItems.Add(IP.Match(mail.Subject).Value);
+                                        li.SubItems.Add(percent.Value + "%");
+                                        li.SubItems.Add("Mem");
+                                        li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
+                                        li.Group = mainform.customcontrol11.listView1.Groups[10];
+                                        mainform.customcontrol11.listView1.Items.Add(li);
+                                    }
+                                    else
+                                    {
+                                        mainform.customcontrol11.listView1.Items[index].SubItems[2].Text = percent.Value + "%";
+                                    }
+
+                                }
+
+                                else if (mail.Subject.Contains("Reset : Memory Utilized  on"))
+                                {
+                                    var memresetname = Regex.Match(mail.Subject, @"(?<=Reset : Memory Utilized  on )(.+?)(?=-)");
+                                    index = SearchGroup(10, memresetname.Value);
+                                    if (index != -1)
+                                    {
+                                        mainform.customcontrol11.listView1.Items[index].Remove();
+                                    }
+
+                                }
+
+
+
+
+
+
 
                                 else if (mail.Subject.Contains("Reboot"))
                                 {
@@ -212,6 +255,8 @@ namespace Shift.Companion
                                     mainform.customcontrol11.listView1.Items.Add(li);
 
                                 }
+
+
                             }
 
 
@@ -282,6 +327,17 @@ namespace Shift.Companion
 
                             }
 
+                            else if (mail.SenderEmailAddress == "sqljobs@linkdatacenter.net")
+                            {
+                                ListViewItem li = new ListViewItem(mail.Subject, 2);
+                                li.SubItems.Add(IP.Match(mail.Body).Value);
+                                li.SubItems.Add("failed");
+                                li.SubItems.Add("SQL Job");
+                                li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
+                                li.Group = mainform.customcontrol11.listView1.Groups[9];
+                                mainform.customcontrol11.listView1.Items.Add(li);
+
+                            }
 
 
 
