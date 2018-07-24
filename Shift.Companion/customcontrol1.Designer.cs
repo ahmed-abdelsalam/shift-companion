@@ -41,6 +41,7 @@
             System.Windows.Forms.ListViewGroup listViewGroup9 = new System.Windows.Forms.ListViewGroup("High CPU", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup10 = new System.Windows.Forms.ListViewGroup("SQL Jobs", System.Windows.Forms.HorizontalAlignment.Left);
             System.Windows.Forms.ListViewGroup listViewGroup11 = new System.Windows.Forms.ListViewGroup("Mem Load", System.Windows.Forms.HorizontalAlignment.Left);
+            System.Windows.Forms.ListViewGroup listViewGroup12 = new System.Windows.Forms.ListViewGroup("24*7", System.Windows.Forms.HorizontalAlignment.Left);
             this.panel1 = new System.Windows.Forms.Panel();
             this.SidePanel2 = new System.Windows.Forms.Panel();
             this.button6 = new System.Windows.Forms.Button();
@@ -316,6 +317,8 @@
             listViewGroup10.Name = "listViewGroup10";
             listViewGroup11.Header = "Mem Load";
             listViewGroup11.Name = "listViewGroup11";
+            listViewGroup12.Header = "24*7";
+            listViewGroup12.Name = "listViewGroup12";
             this.listView1.Groups.AddRange(new System.Windows.Forms.ListViewGroup[] {
             listViewGroup1,
             listViewGroup2,
@@ -327,7 +330,8 @@
             listViewGroup8,
             listViewGroup9,
             listViewGroup10,
-            listViewGroup11});
+            listViewGroup11,
+            listViewGroup12});
             this.listView1.LargeImageList = this.imageList1;
             this.listView1.Location = new System.Drawing.Point(0, 67);
             this.listView1.Name = "listView1";

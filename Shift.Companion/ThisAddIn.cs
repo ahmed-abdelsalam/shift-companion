@@ -238,7 +238,7 @@ namespace Shift.Companion
 
                                 }
 
-
+                               
 
 
 
@@ -261,7 +261,33 @@ namespace Shift.Companion
 
 
 
+                            else if (mail.SenderEmailAddress == "noreply@site24x7.com")
+                            {
+                                var siteDown = Regex.Match(mail.Subject, @"(.+?)(?= is Down)");
+                                var siteUp = Regex.Match(mail.Subject, @"(.+?)(?= is Up)");
+                                
+                                if(mail.Subject.Contains("Down"))
+                                {
+                                    ListViewItem li = new ListViewItem(siteDown.Value, 1);
+                                    li.SubItems.Add("");
+                                    li.SubItems.Add("24*7");
+                                    li.SubItems.Add("Down");
+                                    li.SubItems.Add(mail.ReceivedTime.ToShortTimeString());
+                                    li.Group = mainform.customcontrol11.listView1.Groups[11];
+                                    mainform.customcontrol11.listView1.Items.Add(li);
 
+                                }
+                                else if (mail.Subject.Contains("Up"))
+                                {
+                                    index = SearchGroup(11, siteUp.Value);
+                                    if (index != -1)
+                                    {
+                                        mainform.customcontrol11.listView1.Items[index].Group = mainform.customcontrol11.listView1.Groups[6];
+
+                                    }
+
+                                }
+                            }
 
 
 
