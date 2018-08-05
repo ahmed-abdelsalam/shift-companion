@@ -268,7 +268,7 @@ namespace Shift.Companion
                                 
                                 if(mail.Subject.Contains("Down"))
                                 {
-                                    ListViewItem li = new ListViewItem(siteDown.Value, 1);
+                                    ListViewItem li = new ListViewItem(siteDown.Value, 5);
                                     li.SubItems.Add("");
                                     li.SubItems.Add("24*7");
                                     li.SubItems.Add("Down");

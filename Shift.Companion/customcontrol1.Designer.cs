@@ -249,6 +249,7 @@
             this.imageList1.Images.SetKeyName(2, "qq (Custom).png");
             this.imageList1.Images.SetKeyName(3, "URL (Custom).png");
             this.imageList1.Images.SetKeyName(4, "system-reboot-icon-red (Custom).png");
+            this.imageList1.Images.SetKeyName(5, "Untitled-6.ico");
             // 
             // imageList2
             // 
@@ -259,6 +260,7 @@
             this.imageList2.Images.SetKeyName(2, "download.jpg");
             this.imageList2.Images.SetKeyName(3, "3613.jpg");
             this.imageList2.Images.SetKeyName(4, "system-reboot-icon-red.png");
+            this.imageList2.Images.SetKeyName(5, "Untitled-6.ico");
             // 
             // columnHeader1
             // 

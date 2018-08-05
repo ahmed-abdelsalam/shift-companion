@@ -94,10 +94,13 @@ namespace Shift.Companion
 
         private void deleteToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            listView1.FocusedItem.Remove();
+            foreach (ListViewItem eachItem in listView1.SelectedItems)
+            {
+                listView1.Items.Remove(eachItem);
+            }
         }
 
-        private void pingToolStripMenuItem_Click(object sender, EventArgs e)
+            private void pingToolStripMenuItem_Click(object sender, EventArgs e)
         {
             Ping ping = new Ping();
             PingReply reply = ping.Send(listView1.FocusedItem.SubItems[1].Text.ToString(), 1000);
