@@ -29,7 +29,7 @@ namespace Shift.Companion
             return index;
         }
 
-        private void ThisAddIn_Startup(object sender, System.EventArgs e)
+        public void ThisAddIn_Startup(object sender, System.EventArgs e)
         {
 
             outlookNameSpace = this.Application.GetNamespace("MAPI");
@@ -38,7 +38,7 @@ namespace Shift.Companion
                     OlDefaultFolders.olFolderInbox);
             items = inbox.Items;
             items.ItemAdd += new Outlook.ItemsEvents_ItemAddEventHandler(InboxFolderItemAdded);
-
+           
 
         }
 

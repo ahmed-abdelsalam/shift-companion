@@ -246,7 +246,7 @@
             this.imageList1.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList1.Images.SetKeyName(0, "Apps-partitionmanager-icon (Custom).png");
             this.imageList1.Images.SetKeyName(1, "360361-ipswitch-whatsup (Custom).png");
-            this.imageList1.Images.SetKeyName(2, "qq (Custom).png");
+            this.imageList1.Images.SetKeyName(2, "be_128_shadowed (Custom).png");
             this.imageList1.Images.SetKeyName(3, "URL (Custom).png");
             this.imageList1.Images.SetKeyName(4, "system-reboot-icon-red (Custom).png");
             this.imageList1.Images.SetKeyName(5, "Untitled-6.ico");
@@ -257,7 +257,7 @@
             this.imageList2.TransparentColor = System.Drawing.Color.Transparent;
             this.imageList2.Images.SetKeyName(0, "Apps-partitionmanager-icon.png");
             this.imageList2.Images.SetKeyName(1, "360361-ipswitch-whatsup.png");
-            this.imageList2.Images.SetKeyName(2, "download.jpg");
+            this.imageList2.Images.SetKeyName(2, "be_128_shadowed (Custom).png");
             this.imageList2.Images.SetKeyName(3, "3613.jpg");
             this.imageList2.Images.SetKeyName(4, "system-reboot-icon-red.png");
             this.imageList2.Images.SetKeyName(5, "Untitled-6.ico");

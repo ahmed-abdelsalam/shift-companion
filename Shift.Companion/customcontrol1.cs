@@ -32,17 +32,11 @@ namespace Shift.Companion
              
             SidePanel2.Width = button2.Width;
             SidePanel2.Left = button2.Left;
-            ListViewItem li = new ListViewItem("LDCHV102D",0);
-            li.SubItems.Add("192.168.1.4");          
-            li.SubItems.Add("90%");
-            li.SubItems.Add("space");
-            li.SubItems.Add("ghjkjnkl");
-            li.Group = listView1.Groups["Space"];
-            
-            listView1.Items.Add(li);
             
 
-            
+
+
+
 
         }
 

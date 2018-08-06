@@ -58,6 +58,12 @@ namespace Shift.Companion
 
         }
 
+        public void Form1_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            e.Cancel = true;
+            
+
+        }
         private void button2_Click(object sender, EventArgs e)
         {
             SidePanel.Height = button2.Height;
@@ -110,6 +116,7 @@ namespace Shift.Companion
         {
 
         }
+
     }
     
 }
